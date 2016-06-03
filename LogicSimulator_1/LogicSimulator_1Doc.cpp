@@ -24,14 +24,13 @@ IMPLEMENT_DYNCREATE(CLogicSimulator_1Doc, CDocument)
 BEGIN_MESSAGE_MAP(CLogicSimulator_1Doc, CDocument)
 END_MESSAGE_MAP()
 
-
 // CLogicSimulator_1Doc 생성/소멸
 
 CLogicSimulator_1Doc::CLogicSimulator_1Doc()
 {
 	// TODO: 여기에 일회성 생성 코드를 추가합니다.
 
-}
+} 
 
 CLogicSimulator_1Doc::~CLogicSimulator_1Doc()
 {

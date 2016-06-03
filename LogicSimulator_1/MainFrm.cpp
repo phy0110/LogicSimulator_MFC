@@ -6,6 +6,9 @@
 #include "LogicSimulator_1.h"
 
 #include "MainFrm.h"
+#include "LogicSimulator_1Doc.h"
+#include "LogicSimulator_1View.h"
+#include "PaintView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -54,10 +57,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
+	m_wndSplitter.CreateStatic(this, 1, 2);
+	m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CLogicSimulator_1View), CSize(300, 300), pContext);
+	m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(CPaintView), CSize(300, 300), pContext);
+	SetActiveView((CView*)m_wndSplitter.GetPane(0, 0));
+	return TRUE;
+	/*
 	return m_wndSplitter.Create(this,
 		2, 2,               // TODO: 행 및 열의 개수를 조정합니다.
 		CSize(10, 10),      // TODO: 최소 창 크기를 조정합니다.
 		pContext);
+	*/
 }
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)

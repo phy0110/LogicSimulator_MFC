@@ -185,6 +185,7 @@
     <ClInclude Include="LogicSimulator_1Doc.h" />
     <ClInclude Include="LogicSimulator_1View.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="PaintView.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="LogicSimulator_1Doc.cpp" />
     <ClCompile Include="LogicSimulator_1View.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="PaintView.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -209,6 +211,7 @@
     <ResourceCompile Include="LogicSimulator_1.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\bitmap1.bmp" />
     <Image Include="res\LogicSimulator_1.ico" />
     <Image Include="res\LogicSimulator_1Doc.ico" />
     <Image Include="res\Toolbar.bmp" />
@@ -216,4 +219,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="LogicSimulator_1.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

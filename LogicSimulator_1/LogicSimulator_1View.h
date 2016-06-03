@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 class CLogicSimulator_1View : public CTreeView
 {
 protected: // serialization에서만 만들어집니다.
@@ -13,7 +12,7 @@ protected: // serialization에서만 만들어집니다.
 
 // 특성입니다.
 public:
-	CLogicSimulator_1Doc* GetDocument() const;
+//	CLogicSimulator_1Doc* GetDocument() const;
 
 // 작업입니다.
 public:
@@ -37,6 +36,9 @@ protected:
 // 생성된 메시지 맵 함수
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+//	afx_msg void OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 #ifndef _DEBUG  // LogicSimulator_1View.cpp의 디버그 버전
