@@ -1,5 +1,6 @@
 #pragma once
-
+#include <gdiplus.h>
+using namespace Gdiplus;
 
 // AndGate
 
@@ -17,12 +18,9 @@ public:
 	int UpWire; //와이어링1
 	int DownWire; //와이어링2
 	BOOL connect; // 연결
-	int current;
-	BOOL move;
-	int startx;
-	int starty;
 	CPoint point;
 	void AndGate::Paint(CClientDC* dc);
+	void AndGate::Rotate(CClientDC* dc);
 protected:
 	DECLARE_MESSAGE_MAP()
 public:

@@ -19,7 +19,8 @@ IMPLEMENT_DYNCREATE(CPaintView, CView)
 CPaintView::CPaintView()
 	: strGatename(_T(""))
 {
-
+	current = -1;
+	move = FALSE;
 }
 
 CPaintView::~CPaintView()
@@ -46,7 +47,12 @@ void CPaintView::OnDraw(CDC* pDC)
 	CDocument* pDoc = GetDocument();
 	CPaintDC dc(this); // 그리기를 위한 디바이스 컨텍스트입니다.
 
-					   // TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	//dc.SelectStockObject(NULL_BRUSH);
+	//dc.SetROP2(R2_COPYPEN);
+	/*
+	for (int i = 0; i<boxes.GetCount(); i++) {
+		dc.Rectangle(boxes[i].left, boxes[i].top, boxes[i].right, boxes[i].bottom);
+	}*/
 }
 
 // CPaintView 진단입니다.
@@ -82,28 +88,26 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 		point1 = point;
 		check = FALSE;
 	}
-	else {
+	else if (check == FALSE) {
 		point2 = point;
 		check = TRUE;
 		dc.MoveTo(point1.x, point1.y);
 		dc.LineTo(point2.x, point2.y);
-	}
-
-	for (int i = 0; i<boxes.GetCount(); i++) {
-		if (boxes[i].left <= point.x && point.x <= boxes[i].right ||
-			boxes[i].right <= point.x && point.x <= boxes[i].left) {
-
-			if (boxes[i].top <= point.y && point.y <= boxes[i].bottom ||
-				boxes[i].bottom <= point.y && point.y <= boxes[i].top) {
-
-				current = i;
-				move = true;
-				break;
+	}/*
+	else if (nFlags & MK_LBUTTON == 1) {
+		current = -1;
+		for (int i = 0; i<boxes.GetCount(); i++) {
+			if (boxes[i].left <= point.x && point.x <= boxes[i].right ||
+				boxes[i].right <= point.x && point.x <= boxes[i].left) {
+				if (boxes[i].top <= point.y && point.y <= boxes[i].bottom ||
+					boxes[i].bottom <= point.y && point.y <= boxes[i].top) {
+					current = i;
+					move = true;
+					break;
+				}
 			}
-
 		}
-
-	}
+	}*/
 
 	CView::OnLButtonDown(nFlags, point);
 }
@@ -118,21 +122,18 @@ void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
 		and.Paint(&dc);
 		strGatename = "";
 	}
-
 	else if (strGatename == "OR 게이트") {
 		//비트맵 출력
 		OrGate or (point);
 		or .Paint(&dc);
 		strGatename = "";
 	}
-
 	else if (strGatename == "NOT 게이트") {
 		//비트맵 출력
 		NotGate not(point);
 		not.Paint(&dc);
 		strGatename = "";
 	}
-	
 	else if (strGatename == "NAND 게이트") {
 		NandGate nand(point);
 		nand.Paint(&dc);
@@ -148,13 +149,35 @@ void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
 		xor.Paint(&dc);
 		strGatename = "";
 	}
+	else if (strGatename == "텍스트 라벨") {
+		//텍스트 라벨을 어떻게 넣지?
+		CString a = _T("name"); // 여기에 이름 어떻게 넣을지 해야하는뎁,,,
+		dc.TextOutW(point.x, point.y, a);
+	}
 
 	CView::OnLButtonUp(nFlags, point);
 }
 
 void CPaintView::OnMouseMove(UINT nFlags, CPoint point)
-{
+{/*
+	if (move == TRUE && nFlags & MK_LBUTTON == 1 && current != -1) {
+		CClientDC dc(this);
+		dc.SelectStockObject(NULL_BRUSH);
+		dc.SetROP2(R2_NOT);
 
+//		dc.Rectangle(boxes[current].left, boxes[current].top, boxes[current].right, boxes[current].bottom);
+
+		// 이동
+		boxes[current].left += point.x - startx;
+		boxes[current].top += point.y - starty;
+		boxes[current].right += point.x - startx;
+		boxes[current].bottom += point.y - starty;
+
+		startx = point.x;
+		starty = point.y;
+
+		dc.Rectangle(boxes[current].left, boxes[current].top, boxes[current].right, boxes[current].bottom);
+	}*/
 	CView::OnMouseMove(nFlags, point);
 }
 

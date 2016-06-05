@@ -94,6 +94,10 @@ void CLogicSimulator_1View::OnInitialUpdate()
 	// 라이브 박스 추가
 	/* 1-레벨 초기화 */
 	HTREEITEM hLib = tree.InsertItem(_T("라이브러리 박스"), 0, 0, TVI_ROOT, TVI_LAST);
+
+	// 텍스트 라벨 추가
+	/* 1-레벨 초기화 */
+	HTREEITEM hText = tree.InsertItem(_T("텍스트 라벨"), 0, 0, TVI_ROOT, TVI_LAST);
 }
 
 
