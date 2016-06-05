@@ -51,7 +51,6 @@ void NorGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNOR, Rect(point.x, point.y, pBitmapNOR->GetWidth(), pBitmapNOR->GetHeight()), 0, 0, pBitmapNOR->GetWidth(), pBitmapNOR->GetHeight(), UnitPixel);
 
-	pBitmapNOR->Clone(Rect(point.x, point.y, pBitmapNOR->GetWidth(), pBitmapNOR->GetHeight()), IDB_NOR);
 
 	//기능 구현
 	if (UpInput == 0) { // 입력값 0

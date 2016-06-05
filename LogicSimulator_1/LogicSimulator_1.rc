@@ -92,6 +92,12 @@ IDB_NAND                BITMAP                  "res\\bmp00002.bmp"
 
 IDB_NOR                 BITMAP                  "res\\bmp00003.bmp"
 
+IDB_DFF                 BITMAP                  "res\\bmp00004.bmp"
+
+IDB_JKFF                BITMAP                  "res\\bmp00005.bmp"
+
+IDB_TFF                 BITMAP                  "res\\bmp00006.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

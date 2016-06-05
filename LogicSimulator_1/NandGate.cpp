@@ -51,7 +51,6 @@ void NandGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNAND, Rect(point.x, point.y, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight()), 0, 0, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight(), UnitPixel);
 
-	pBitmapNAND->Clone(Rect(point.x, point.y, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight()), IDB_NAND);
 
 	//기능 구현
 	if (UpInput == 0) { // 입력값 0

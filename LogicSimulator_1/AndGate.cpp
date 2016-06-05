@@ -51,19 +51,20 @@ void AndGate::Paint(CClientDC* dc) {
 	
 	CRect* box = new CRect(point.x, point.y, bmpinfo.bmWidth, bmpinfo.bmHeight);
 	dc->FillRect(box, &brush); //rect와 bitmap 연결
-	
+
 	CPaintView* pv;
-	pv->boxes.Add(*box);
-	pv->current = pv->boxes.GetCount() - 1; */
+	pv->boxes.Add(*);
+	pv->current = pv->boxes.GetCount() - 1;
+	*/
 
 	/* GDI+ 구현 */
 	Graphics ScreenG(dc->GetSafeHdc());
 	Bitmap* pBitmapAND;
 	pBitmapAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_AND));
-
 	ScreenG.DrawImage(pBitmapAND, Rect(point.x, point.y, pBitmapAND->GetWidth(), pBitmapAND->GetHeight()), 0, 0, pBitmapAND->GetWidth(), pBitmapAND->GetHeight(), UnitPixel);
 
-	pBitmapAND->Clone(Rect(point.x, point.y, pBitmapAND->GetWidth(), pBitmapAND->GetHeight()), IDB_AND);
+
+//	pBitmapAND->Clone(Rect(point.x, point.y, pBitmapAND->GetWidth(), pBitmapAND->GetHeight()), IDB_AND);
 
 //	ScreenG.DrawImage(pBitmapAND->Clone(Rect(point.x, point.y, pBitmapAND->GetWidth(), pBitmapAND->GetHeight()), IDB_AND), point.x, point.y);
 

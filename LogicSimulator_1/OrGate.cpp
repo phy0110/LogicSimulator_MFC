@@ -52,7 +52,6 @@ void OrGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapOR, Rect(point.x, point.y, pBitmapOR->GetWidth(), pBitmapOR->GetHeight()), 0, 0, pBitmapOR->GetWidth(), pBitmapOR->GetHeight(), UnitPixel);
 
-	pBitmapOR->Clone(Rect(point.x, point.y, pBitmapOR->GetWidth(), pBitmapOR->GetHeight()), IDB_OR);
 
 	//기능 구현
 	if (UpInput == 1 || DownInput == 1) {// 10 -> 1  01 -> 1  11 -> 1

@@ -51,7 +51,6 @@ void XorGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNOT, Rect(point.x, point.y, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight()), 0, 0, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight(), UnitPixel);
 
-	pBitmapNOT->Clone(Rect(point.x, point.y, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight()), IDB_XOR);
 
 	//기능 구현
 	if (UpInput == 0) { // 입력값 0

@@ -11,6 +11,7 @@
 #include "NandGate.h"
 #include "NorGate.h"
 #include "XorGate.h"
+#include "TFF.h"
 
 // CPaintView
 
@@ -93,8 +94,9 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 		check = TRUE;
 		dc.MoveTo(point1.x, point1.y);
 		dc.LineTo(point2.x, point2.y);
-	}/*
+	}
 	else if (nFlags & MK_LBUTTON == 1) {
+		/*
 		current = -1;
 		for (int i = 0; i<boxes.GetCount(); i++) {
 			if (boxes[i].left <= point.x && point.x <= boxes[i].right ||
@@ -107,7 +109,10 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 				}
 			}
 		}
-	}*/
+		*/
+		//PaintView에 그려진 gate영역들이 선택됨?or 아님?
+		//이런거 구별 어떻게 하지..?
+	}
 
 	CView::OnLButtonDown(nFlags, point);
 }
@@ -149,10 +154,10 @@ void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
 		xor.Paint(&dc);
 		strGatename = "";
 	}
-	else if (strGatename == "텍스트 라벨") {
-		//텍스트 라벨을 어떻게 넣지?
-		CString a = _T("name"); // 여기에 이름 어떻게 넣을지 해야하는뎁,,,
-		dc.TextOutW(point.x, point.y, a);
+	else if (strGatename == "T - FF") {
+		TFF tff(point);
+		tff.Paint(&dc);
+		strGatename = "";
 	}
 
 	CView::OnLButtonUp(nFlags, point);
@@ -185,6 +190,14 @@ void CPaintView::OnMouseMove(UINT nFlags, CPoint point)
 	temp.Format(_T("(%4d , %4d) "), point.x, point.y);
 	dc.TextOut(100, 100, temp);
 */
+	CClientDC dc(this);
+
+	if (strGatename == "AND 게이트") {
+		Invalidate();
+		AndGate and (point);
+		dc.SetROP2(R2_BLACK);
+		and.Paint(&dc);
+	}
 
 	CView::OnMouseMove(nFlags, point);
 	
