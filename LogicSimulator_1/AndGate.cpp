@@ -31,8 +31,11 @@ END_MESSAGE_MAP()
 
 
 // AndGate 메시지 처리기입니다.
+
+/* 비트맵 이미지 구현 */
 void AndGate::Paint(CClientDC* dc) {
 	/*
+	//GDI
 	CBitmap bitmap;
 	bitmap.LoadBitmapW(IDB_AND);
 	BITMAP bmpinfo;
@@ -53,6 +56,7 @@ void AndGate::Paint(CClientDC* dc) {
 	pv->boxes.Add(*box);
 	pv->current = pv->boxes.GetCount() - 1; */
 
+	/* GDI+ 구현 */
 	Graphics ScreenG(dc->GetSafeHdc());
 	Bitmap* pBitmapAND;
 	pBitmapAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_AND));
@@ -75,6 +79,7 @@ void AndGate::Paint(CClientDC* dc) {
 	}
 }
 
+/* 비트맵 이미지 돌리기 */
 void AndGate::Rotate(CClientDC* dc) {
 	//이미지 돌려주고 나서 돌리기 전 그 영역의 이미지는 없애고 싶은데...
 	Graphics ScreenG(dc->GetSafeHdc());
@@ -86,4 +91,18 @@ void AndGate::Rotate(CClientDC* dc) {
 	ScreenG.DrawImage(pBitmapAND, 0, 0);
 
 	delete pBitmapAND;
+}
+
+/* 라벨 출력 */
+void AndGate::TextLabel(CClientDC* dc) {
+	CString outPut;
+
+	if (connect == TRUE && Output == 1) { // 출력값이 1일 경우
+		outPut = _T("1");
+	}
+	else if (connect == TRUE&&Output == 0) { // 출력값이 0일 경우
+		outPut = _T("0");
+	}
+
+	dc->TextOutW(point.x + 72, point.y + 18, outPut);
 }

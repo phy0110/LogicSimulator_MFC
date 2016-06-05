@@ -21,6 +21,7 @@ public:
 	CPoint point;
 	void AndGate::Paint(CClientDC* dc);
 	void AndGate::Rotate(CClientDC* dc);
+	void AndGate::TextLabel(CClientDC* dc);
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
