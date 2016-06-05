@@ -7,7 +7,7 @@
 #include "LogicSimulator_1Doc.h"
 #include "PaintView.h"
 
-ULONG_PTR g_GdiPlusTokenBoxData;
+ULONG_PTR g_GdiPlusTokenBoxData_AND;
 // AndGate
 
 IMPLEMENT_DYNAMIC(AndGate, CWnd)
@@ -16,12 +16,12 @@ AndGate::AndGate(CPoint point)
 {
 	this->point = point;
 	GdiplusStartupInput GdiplusStartupInput;
-	GdiplusStartup(&g_GdiPlusTokenBoxData, &GdiplusStartupInput, NULL);
+	GdiplusStartup(&g_GdiPlusTokenBoxData_AND, &GdiplusStartupInput, NULL);
 }
 
 AndGate::~AndGate()
 {
-	GdiplusShutdown(g_GdiPlusTokenBoxData);
+	GdiplusShutdown(g_GdiPlusTokenBoxData_AND);
 }
 
 
@@ -62,6 +62,10 @@ void AndGate::Paint(CClientDC* dc) {
 	pBitmapAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_AND));
 
 	ScreenG.DrawImage(pBitmapAND, Rect(point.x, point.y, pBitmapAND->GetWidth(), pBitmapAND->GetHeight()), 0, 0, pBitmapAND->GetWidth(), pBitmapAND->GetHeight(), UnitPixel);
+
+	pBitmapAND->Clone(Rect(point.x, point.y, pBitmapAND->GetWidth(), pBitmapAND->GetHeight()), IDB_AND);
+
+//	ScreenG.DrawImage(pBitmapAND->Clone(Rect(point.x, point.y, pBitmapAND->GetWidth(), pBitmapAND->GetHeight()), IDB_AND), point.x, point.y);
 
 	delete pBitmapAND;
 
@@ -105,4 +109,9 @@ void AndGate::TextLabel(CClientDC* dc) {
 	}
 
 	dc->TextOutW(point.x + 72, point.y + 18, outPut);
+}
+
+BOOL AndGate::Connect(CClientDC* dc) {
+	//잠깐 연결시키는데 그걸 저장하고 있어야하지않나?point.x랑 point.y는 항상 변하자나... 따로 객체를 선언해야하나
+	return FALSE;
 }

@@ -2,6 +2,9 @@
 #include "LogicSimulator_1Doc.h"
 #include "PaintView.h"
 
+#include <gdiplus.h>
+using namespace Gdiplus;
+
 
 // OrGate
 
@@ -25,6 +28,9 @@ public:
 	int starty;
 	CPoint point;
 	void OrGate::Paint(CClientDC* dc);
+	void OrGate::Rotate(CClientDC* dc);
+	void OrGate::TextLabel(CClientDC* dc);
+	BOOL OrGate::Connect(CClientDC* dc);
 protected:
 	DECLARE_MESSAGE_MAP()
 };
