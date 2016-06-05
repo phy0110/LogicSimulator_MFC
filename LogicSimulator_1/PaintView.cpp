@@ -178,15 +178,16 @@ void CPaintView::OnMouseMove(UINT nFlags, CPoint point)
 
 		dc.Rectangle(boxes[current].left, boxes[current].top, boxes[current].right, boxes[current].bottom);
 	}*/
+	/*
 	//움직이는 마우스 위치 출력
 	CClientDC dc(this);
 	CString temp;
 	temp.Format(_T("(%4d , %4d) "), point.x, point.y);
 	dc.TextOut(100, 100, temp);
+*/
 
 	CView::OnMouseMove(nFlags, point);
-
-	CView::OnMouseMove(nFlags, point);
+	
 }
 
 
