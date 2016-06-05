@@ -2,6 +2,8 @@
 #include "LogicSimulator_1Doc.h"
 #include "PaintView.h"
 
+#include <gdiplus.h>
+using namespace Gdiplus;
 
 // NotGate
 
@@ -25,6 +27,9 @@ public:
 	int starty;
 	CPoint point;
 	void NotGate::Paint(CClientDC* dc);
+	void NotGate::Rotate(CClientDC* dc);
+	void NotGate::TextLabel(CClientDC* dc);
+	BOOL NotGate::Connect(CClientDC* dc);
 protected:
 	DECLARE_MESSAGE_MAP()
 };
