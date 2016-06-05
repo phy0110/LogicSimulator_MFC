@@ -13,6 +13,7 @@
 #include "XorGate.h"
 #include "TFF.h"
 #include "JKFF.h"
+#include "DFF.h"
 
 // CPaintView
 
@@ -163,6 +164,11 @@ void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
 	else if (strGatename == "JK-FF") {
 		JKFF jkff(point);
 		jkff.Paint(&dc);
+		strGatename = "";
+	}
+	else if (strGatename == "D-FF") {
+		DFF dff(point);
+		dff.Paint(&dc);
 		strGatename = "";
 	}
 
