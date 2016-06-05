@@ -47,7 +47,12 @@ BOOL CLogicSimulator_1Doc::OnNewDocument()
 	return TRUE;
 }
 
-
+// 트리뷰에 항목 선택시 리스트뷰 항목 변경
+void CLogicSimulator_1Doc::SelectTreeViewFolder(CString select)
+{
+	CPaintView* pv = (CPaintView*)m_viewList.GetHead();
+	pv->CheckSelect(select);
+}
 
 
 // CLogicSimulator_1Doc serialization

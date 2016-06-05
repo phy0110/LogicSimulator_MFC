@@ -37,8 +37,8 @@ protected:
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
-//	afx_msg void OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 #ifndef _DEBUG  // LogicSimulator_1View.cpp의 디버그 버전

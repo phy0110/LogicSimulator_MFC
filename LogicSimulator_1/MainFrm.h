@@ -4,6 +4,10 @@
 
 #pragma once
 
+#include "LogicSimulator_1Doc.h"
+#include "LogicSimulator_1View.h"
+#include "PaintView.h"
+
 class CMainFrame : public CFrameWnd
 {
 	
@@ -15,7 +19,8 @@ protected: // serialization에서만 만들어집니다.
 protected:
 	CSplitterWnd m_wndSplitter;
 public:
-
+	CLogicSimulator_1View* m_pLogicSimulatorView;
+	CPaintView* m_pPaintView;
 // 작업입니다.
 public:
 

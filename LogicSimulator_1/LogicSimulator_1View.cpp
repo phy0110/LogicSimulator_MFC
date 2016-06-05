@@ -11,6 +11,7 @@
 
 #include "LogicSimulator_1Doc.h"
 #include "LogicSimulator_1View.h"
+#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,15 +23,14 @@
 IMPLEMENT_DYNCREATE(CLogicSimulator_1View, CTreeView)
 
 BEGIN_MESSAGE_MAP(CLogicSimulator_1View, CTreeView)
-//	ON_NOTIFY_REFLECT(NM_DBLCLK, &CLogicSimulator_1View::OnNMDblclk)
-ON_NOTIFY_REFLECT(NM_DBLCLK, &CLogicSimulator_1View::OnNMDblclk)
+ON_NOTIFY_REFLECT(TVN_SELCHANGED, &CLogicSimulator_1View::OnTvnSelchanged)
 END_MESSAGE_MAP()
 
 // CLogicSimulator_1View 생성/소멸
 
 CLogicSimulator_1View::CLogicSimulator_1View()
 {
-	// TODO: 여기에 생성 코드를 추가합니다.
+	
 
 }
 
@@ -47,6 +47,8 @@ BOOL CLogicSimulator_1View::PreCreateWindow(CREATESTRUCT& cs)
 
 	return CTreeView::PreCreateWindow(cs);
 }
+
+CString select_tree;
 
 void CLogicSimulator_1View::OnInitialUpdate()
 {
@@ -86,7 +88,7 @@ void CLogicSimulator_1View::OnInitialUpdate()
 	HTREEITEM hOutPut = tree.InsertItem(_T("출력"), 0, 0, TVI_ROOT, TVI_LAST);
 
 	/* 2-레벨 초기화 */
-	HTREEITEM hLamp = tree.InsertItem(_T("입력 스위치"), 1, 1, hOutPut, TVI_LAST);
+	HTREEITEM hLamp = tree.InsertItem(_T("출력 램프"), 1, 1, hOutPut, TVI_LAST);
 	HTREEITEM hSegment = tree.InsertItem(_T("7-세그먼트"), 1, 1, hOutPut, TVI_LAST);
 
 	// 라이브 박스 추가
@@ -115,30 +117,32 @@ CLogicSimulator_1Doc* CLogicSimulator_1View::GetDocument() const // 디버그되지 �
 }*/
 #endif //_DEBUG
 
-
 // CLogicSimulator_1View 메시지 처리기
-
-
-//void clogicsimulator_1view::onnmdblclk(nmhdr *pnmhdr, lresult *presult)
-//{
-//	lpnmtreeview pnmtreeview = reinterpret_cast<lpnmtreeview>(pnmhdr);
-//	// todo: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-//	
-//
-//	ctreectrl& tree = gettreectrl();
-//	cstring gate = tree.getitemtext(tree.getselecteditem());
-//
-//
-//	*presult = 0;
-//}
-
+CPaintView* cv;
+CLogicSimulator_1View* csv;
 void CLogicSimulator_1View::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-
+	TVITEM tvi = pNMTreeView->itemNew;
 	CTreeCtrl& tree = GetTreeCtrl();
 	CLogicSimulator_1Doc* pDoc = (CLogicSimulator_1Doc*)GetDocument();
-//	= tree.GetItemText(tree.GetSelectedItem());
+	select_tree = tree.GetItemText(tvi.hItem);
+	pDoc->SelectTreeViewFolder(select_tree);
 
+	*pResult = 0;
+}
+
+
+void CLogicSimulator_1View::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CTreeCtrl & tree = GetTreeCtrl();
+	HTREEITEM hItem = tree.GetSelectedItem();
+
+	CString str = tree.GetItemText(hItem);
+
+	CMainFrame *pFrame = (CMainFrame *)AfxGetMainWnd();
+	pFrame->m_pPaintView->strGatename = str;
 	*pResult = 0;
 }
