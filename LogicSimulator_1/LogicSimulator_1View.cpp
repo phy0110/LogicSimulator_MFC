@@ -70,7 +70,7 @@ void CLogicSimulator_1View::OnInitialUpdate()
 		hLogicGates[i] = tree.InsertItem(logicGates[i], 2, 2, hLogicGate, TVI_LAST);
 	}
 	HTREEITEM hFFGates[3];
-	CString FFGates[] = { _T("D-FF"), _T("JK-FF"), _T("T - FF") };
+	CString FFGates[] = { _T("D-FF"), _T("JK-FF"), _T("T-FF") };
 	for (int i = 0; i < 3; i++) {
 		hFFGates[i] = tree.InsertItem(FFGates[i], 2, 2, hFFGate, TVI_LAST);
 	}

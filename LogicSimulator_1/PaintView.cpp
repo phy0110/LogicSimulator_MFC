@@ -12,6 +12,7 @@
 #include "NorGate.h"
 #include "XorGate.h"
 #include "TFF.h"
+#include "JKFF.h"
 
 // CPaintView
 
@@ -154,9 +155,14 @@ void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
 		xor.Paint(&dc);
 		strGatename = "";
 	}
-	else if (strGatename == "T - FF") {
+	else if (strGatename == "T-FF") {
 		TFF tff(point);
 		tff.Paint(&dc);
+		strGatename = "";
+	}
+	else if (strGatename == "JK-FF") {
+		JKFF jkff(point);
+		jkff.Paint(&dc);
 		strGatename = "";
 	}
 
