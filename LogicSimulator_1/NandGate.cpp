@@ -47,11 +47,11 @@ void NandGate::Paint(CClientDC* dc) {
 /* GDI+ 구현 */
 	Graphics ScreenG(dc->GetSafeHdc());
 	Bitmap* pBitmapNAND;
-	pBitmapNAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_AND));
+	pBitmapNAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_NAND));
 
 	ScreenG.DrawImage(pBitmapNAND, Rect(point.x, point.y, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight()), 0, 0, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight(), UnitPixel);
 
-	pBitmapNAND->Clone(Rect(point.x, point.y, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight()), IDB_OR);
+	pBitmapNAND->Clone(Rect(point.x, point.y, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight()), IDB_NAND);
 
 	//기능 구현
 	if (UpInput == 0) { // 입력값 0
@@ -71,7 +71,7 @@ void NandGate::Rotate(CClientDC* dc) {
 	//이미지 돌려주고 나서 돌리기 전 그 영역의 이미지는 없애고 싶은데...
 	Graphics ScreenG(dc->GetSafeHdc());
 	Bitmap* pBitmapAND;
-	pBitmapAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_AND));
+	pBitmapAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_NAND));
 	Gdiplus::Matrix matrix;
 	matrix.RotateAt(90, Gdiplus::PointF((float)(pBitmapAND->GetWidth() / 2), (float)(pBitmapAND->GetHeight() / 2)));
 	ScreenG.SetTransform(&matrix);

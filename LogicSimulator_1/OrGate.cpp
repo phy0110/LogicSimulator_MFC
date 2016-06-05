@@ -48,7 +48,7 @@ void OrGate::Paint(CClientDC* dc) {
 /* GDI+ 구현 */
 	Graphics ScreenG(dc->GetSafeHdc());
 	Bitmap* pBitmapOR;
-	pBitmapOR = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_AND));
+	pBitmapOR = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_OR));
 
 	ScreenG.DrawImage(pBitmapOR, Rect(point.x, point.y, pBitmapOR->GetWidth(), pBitmapOR->GetHeight()), 0, 0, pBitmapOR->GetWidth(), pBitmapOR->GetHeight(), UnitPixel);
 
@@ -73,7 +73,7 @@ void OrGate::Rotate(CClientDC* dc) {
 	//이미지 돌려주고 나서 돌리기 전 그 영역의 이미지는 없애고 싶은데...
 	Graphics ScreenG(dc->GetSafeHdc());
 	Bitmap* pBitmapAND;
-	pBitmapAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_AND));
+	pBitmapAND = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_OR));
 	Gdiplus::Matrix matrix;
 	matrix.RotateAt(90, Gdiplus::PointF((float)(pBitmapAND->GetWidth() / 2), (float)(pBitmapAND->GetHeight() / 2)));
 	ScreenG.SetTransform(&matrix);

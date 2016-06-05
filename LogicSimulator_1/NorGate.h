@@ -1,6 +1,10 @@
 #pragma once
 #include "LogicSimulator_1Doc.h"
 #include "PaintView.h"
+
+#include <gdiplus.h>
+using namespace Gdiplus;
+
 // NorGate
 
 class NorGate : public CWnd
@@ -23,6 +27,9 @@ public:
 	int starty;
 	CPoint point;
 	void NorGate::Paint(CClientDC* dc);
+	void NorGate::Rotate(CClientDC* dc);
+	void NorGate::TextLabel(CClientDC* dc);
+	BOOL NorGate::Connect(CClientDC* dc);
 protected:
 	DECLARE_MESSAGE_MAP()
 };
