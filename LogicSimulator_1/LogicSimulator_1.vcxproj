@@ -189,12 +189,14 @@
     <ClInclude Include="LogicSimulator_1View.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="NandGate.h" />
+    <ClInclude Include="NorGate.h" />
     <ClInclude Include="NotGate.h" />
     <ClInclude Include="OrGate.h" />
     <ClInclude Include="PaintView.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="XorGate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AndGate.cpp" />
@@ -203,6 +205,7 @@
     <ClCompile Include="LogicSimulator_1View.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="NandGate.cpp" />
+    <ClCompile Include="NorGate.cpp" />
     <ClCompile Include="NotGate.cpp" />
     <ClCompile Include="OrGate.cpp" />
     <ClCompile Include="PaintView.cpp" />
@@ -212,6 +215,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="XorGate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LogicSimulator_1.reg" />

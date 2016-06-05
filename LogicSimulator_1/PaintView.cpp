@@ -9,6 +9,8 @@
 #include "OrGate.h"
 #include "NotGate.h"
 #include "NandGate.h"
+#include "NorGate.h"
+#include "XorGate.h"
 
 // CPaintView
 
@@ -134,6 +136,16 @@ void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
 	else if (strGatename == "NAND 게이트") {
 		NandGate nand(point);
 		nand.Paint(&dc);
+		strGatename = "";
+	}
+	else if (strGatename == "NOR 게이트") {
+		NorGate nor(point);
+		nor.Paint(&dc);
+		strGatename = "";
+	}
+	else if (strGatename == "XOR 게이트") {
+		XorGate xor (point);
+		xor.Paint(&dc);
 		strGatename = "";
 	}
 
