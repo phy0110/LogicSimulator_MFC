@@ -36,9 +36,6 @@ void CPaintView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
 	CPaintDC dc(this);
-	CPen pen(PS_SOLID, 1, RGB(0, 0, 255));
-	dc.Rectangle(100, 100, 200, 200);
-	
 }
 
 // CPaintView 진단입니다.
@@ -64,7 +61,48 @@ void CPaintView::Dump(CDumpContext& dc) const
 void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CClientDC dc(this);
-	dc.TextOutW(200, 250, strGatename);
+	if (strGatename == "AND 게이트") {
+		//비트맵 출력
+		CBitmap bitmap;
+		bitmap.LoadBitmapW(IDB_AND);
+		BITMAP bmpinfo;
+		bitmap.GetBitmap(&bmpinfo);
+
+		CDC dcmem;
+		dcmem.CreateCompatibleDC(&dc);
+		dcmem.SelectObject(&bitmap);
+
+		dc.BitBlt(point.x, point.y, bmpinfo.bmWidth, bmpinfo.bmHeight, &dcmem, 0, 0, SRCCOPY);
+		
+		//기능 구현
+		
+	}
+
+	if (strGatename == "OR 게이트") {
+		CBitmap bitmap;
+		bitmap.LoadBitmapW(IDB_OR);
+		BITMAP bmpinfo;
+		bitmap.GetBitmap(&bmpinfo);
+
+		CDC dcmem;
+		dcmem.CreateCompatibleDC(&dc);
+		dcmem.SelectObject(&bitmap);
+
+		dc.BitBlt(point.x, point.y, bmpinfo.bmWidth, bmpinfo.bmHeight, &dcmem, 0, 0, SRCCOPY);
+	}
+
+	if (strGatename == "NOT 게이트") {
+		CBitmap bitmap;
+		bitmap.LoadBitmapW(IDB_NOT);
+		BITMAP bmpinfo;
+		bitmap.GetBitmap(&bmpinfo);
+
+		CDC dcmem;
+		dcmem.CreateCompatibleDC(&dc);
+		dcmem.SelectObject(&bitmap);
+
+		dc.BitBlt(point.x, point.y, bmpinfo.bmWidth, bmpinfo.bmHeight, &dcmem, 0, 0, SRCCOPY);
+	}
 	/*
 	if (selected) {
 		dc.TextOutW(200, 300, _T("TURE"));

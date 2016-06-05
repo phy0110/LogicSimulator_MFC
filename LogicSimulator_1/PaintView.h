@@ -15,6 +15,8 @@ public:
 	virtual void OnDraw(CDC* pDC);      // 이 뷰를 그리기 위해 재정의되었습니다.
 	CString strGatename;
 	void CPaintView::AndGate(CPoint point, CClientDC* dc);
+	int Input; // 입력값
+	int Output; // 출력값
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE
