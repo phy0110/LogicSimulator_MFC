@@ -14,9 +14,19 @@ public:
 	void CPaintView::CheckSelect(CString select);
 	virtual void OnDraw(CDC* pDC);      // 이 뷰를 그리기 위해 재정의되었습니다.
 	CString strGatename;
-	void CPaintView::AndGate(CPoint point, CClientDC* dc);
-	int Input; // 입력값
+//	void CPaintView::AndGate(CPoint point, CClientDC* dc);
+	int Input; // 스위치 입력값
 	int Output; // 출력값
+	int UpInput; // 입력값1
+	int DownInput; // 입력값2
+	int UpWire; //와이어링1
+	int DownWire; //와이어링2
+	BOOL connect; // 연결
+	CArray<CRect, CRect&> boxes; // 박스 객체 리스트
+	int current;
+	BOOL move;
+	int startx;
+	int starty;
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE
@@ -29,6 +39,8 @@ protected:
 public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnFileSave();
 };
 
 

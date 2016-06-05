@@ -80,7 +80,7 @@ IDR_LogicSimulator_TYPE ICON                    "res\\LogicSimulator_1Doc.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
-IDB_BITMAP1             BITMAP                  "res\\bitmap1.bmp"
+IDB_XOR                 BITMAP                  "res\\bitmap1.bmp"
 
 IDB_AND                 BITMAP                  "res\\bitmap2.bmp"
 
@@ -88,7 +88,9 @@ IDB_NOT                 BITMAP                  "res\\bitmap3.bmp"
 
 IDB_OR                  BITMAP                  "res\\bmp00001.bmp"
 
-IDB_BITMAP3             BITMAP                  "res\\bmp00002.bmp"
+IDB_NAND                BITMAP                  "res\\bmp00002.bmp"
+
+IDB_NOR                 BITMAP                  "res\\bmp00003.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
