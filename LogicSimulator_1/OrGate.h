@@ -31,6 +31,7 @@ public:
 	void OrGate::Rotate(CClientDC* dc);
 	void OrGate::TextLabel(CClientDC* dc);
 	BOOL OrGate::Connect(CClientDC* dc);
+	void OrGate::function();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

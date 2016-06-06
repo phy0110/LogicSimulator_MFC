@@ -53,12 +53,7 @@ void OrGate::Paint(CClientDC* dc) {
 	ScreenG.DrawImage(pBitmapOR, Rect(point.x, point.y, pBitmapOR->GetWidth(), pBitmapOR->GetHeight()), 0, 0, pBitmapOR->GetWidth(), pBitmapOR->GetHeight(), UnitPixel);
 
 
-	//기능 구현
-	if (UpInput == 1 || DownInput == 1) {// 10 -> 1  01 -> 1  11 -> 1
-		Output = 0;
-	}
-	else // 00 -> 0
-		Output = 0;
+	
 
 	//연결 구현
 	if (UpWire == point.x + 3 && UpWire == point.y + 7 && DownWire == point.x + 3 && DownWire == point.y + 19) { // ORGate와 선 연결 성공
@@ -66,6 +61,15 @@ void OrGate::Paint(CClientDC* dc) {
 	}
 }
 
+/* 와이어링 성공시 전류흐름 */
+void OrGate::function() {
+	//기능 구현
+	if (UpInput == 1 || DownInput == 1) {// 10 -> 1  01 -> 1  11 -> 1
+		Output = 0;
+	}
+	else // 00 -> 0
+		Output = 0;
+}
 
 /* 비트맵 이미지 돌리기 */
 void OrGate::Rotate(CClientDC* dc) {
