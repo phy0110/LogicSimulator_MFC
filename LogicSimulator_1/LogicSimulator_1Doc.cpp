@@ -43,6 +43,14 @@ BOOL CLogicSimulator_1Doc::OnNewDocument()
 
 	// TODO: 여기에 재초기화 코드를 추가합니다.
 	// SDI 문서는 이 문서를 다시 사용합니다.
+	/*
+	CPaintView* pv;
+	POSITION pos = m_LogicSimulator.get
+	while (pos != NULL) {
+		pv = (CLogicSimulator_1View*)m_LogicSimulator.GetNext(pos);
+		delete pv;
+	}
+	m_LogicSimulator.RemoveAll();*/
 
 	return TRUE;
 }
@@ -58,15 +66,18 @@ void CLogicSimulator_1Doc::SelectTreeViewFolder(CString select)
 // CLogicSimulator_1Doc serialization
 
 void CLogicSimulator_1Doc::Serialize(CArchive& ar)
-{
+{/*
 	if (ar.IsStoring())
 	{
 		// TODO: 여기에 저장 코드를 추가합니다.
+		POSITION pos = m_DrawObjs.GetHeadPosition();
+		while (pos != NULL) {
+			((DrawObject*)m_DrawObjs.GetNext(pos))->serialize(ar);
 	}
 	else
 	{
 		// TODO: 여기에 로딩 코드를 추가합니다.
-	}
+	}*/
 }
 
 #ifdef SHARED_HANDLERS

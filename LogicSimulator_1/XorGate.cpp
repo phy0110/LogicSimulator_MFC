@@ -52,14 +52,14 @@ void XorGate::Paint(CClientDC* dc) {
 	ScreenG.DrawImage(pBitmapNOT, Rect(point.x, point.y, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight()), 0, 0, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight(), UnitPixel);
 
 
-	//기능 구현
+	//기능 구현(수정 하센)
 	if (UpInput == 0) { // 입력값 0
 		Output = 1;
 	}
 	else //입력값 1
 		Output = 0;
 
-	//연결 구현
+	//연결 구현(수정 하센)
 	if (UpWire == point.x + 3 && UpWire == point.y + 19) { // NOTGate와 선 연결 성공
 		connect = TRUE;
 	}

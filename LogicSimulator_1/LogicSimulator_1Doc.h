@@ -8,6 +8,9 @@
 
 class CLogicSimulator_1Doc : public CDocument
 {
+private:
+	CTreeView m_LogicSimulator;
+
 protected: // serialization에서만 만들어집니다.
 	CLogicSimulator_1Doc();
 	DECLARE_DYNCREATE(CLogicSimulator_1Doc)
@@ -25,6 +28,9 @@ public:
 public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
+
+//	CTreeView& getDrawObjects();
+
 #ifdef SHARED_HANDLERS
 	virtual void InitializeSearchContent();
 	virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);

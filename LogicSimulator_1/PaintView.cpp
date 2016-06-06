@@ -22,8 +22,8 @@ IMPLEMENT_DYNCREATE(CPaintView, CView)
 CPaintView::CPaintView()
 	: strGatename(_T(""))
 {
-	current = -1;
 	move = FALSE;
+	connect = FALSE;
 }
 
 CPaintView::~CPaintView()
@@ -34,7 +34,8 @@ BEGIN_MESSAGE_MAP(CPaintView, CView)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
-	ON_COMMAND(ID_FILE_SAVE, &CPaintView::OnFileSave)
+//	ON_COMMAND(ID_FILE_SAVE, &CPaintView::OnFileSave)
+ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
 CString mung;
@@ -82,6 +83,16 @@ CPoint point1;
 CPoint point2;
 BOOL check = TRUE;
 
+void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	CClientDC dc(this);
+
+	WhatGate(strGatename, point, &dc);
+	strGatename = "";
+
+	CView::OnLButtonUp(nFlags, point);
+}
+
 void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CClientDC dc(this);
@@ -97,126 +108,117 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 		dc.MoveTo(point1.x, point1.y);
 		dc.LineTo(point2.x, point2.y);
 	}
-	else if (nFlags & MK_LBUTTON == 1) {
-		/*
-		current = -1;
-		for (int i = 0; i<boxes.GetCount(); i++) {
-			if (boxes[i].left <= point.x && point.x <= boxes[i].right ||
-				boxes[i].right <= point.x && point.x <= boxes[i].left) {
-				if (boxes[i].top <= point.y && point.y <= boxes[i].bottom ||
-					boxes[i].bottom <= point.y && point.y <= boxes[i].top) {
-					current = i;
-					move = true;
-					break;
-				}
-			}
-		}
-		*/
-		//PaintView에 그려진 gate영역들이 선택됨?or 아님?
-		//이런거 구별 어떻게 하지..?
-	}
+	
 
 	CView::OnLButtonDown(nFlags, point);
 }
 
 
-void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
+
+void CPaintView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	CClientDC dc(this);
-	if (strGatename == "AND 게이트") {
-		//비트맵 출력
-		AndGate and (point);
-		and.Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "OR 게이트") {
-		//비트맵 출력
-		OrGate or (point);
-		or .Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "NOT 게이트") {
-		//비트맵 출력
-		NotGate not(point);
-		not.Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "NAND 게이트") {
-		NandGate nand(point);
-		nand.Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "NOR 게이트") {
-		NorGate nor(point);
-		nor.Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "XOR 게이트") {
-		XorGate xor (point);
-		xor.Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "T-FF") {
-		TFF tff(point);
-		tff.Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "JK-FF") {
-		JKFF jkff(point);
-		jkff.Paint(&dc);
-		strGatename = "";
-	}
-	else if (strGatename == "D-FF") {
-		DFF dff(point);
-		dff.Paint(&dc);
-		strGatename = "";
+	CString test;
+	test.Format(_T("(%d , %d, %d, %d) "), rects[0].left, rects[0].right, rects[0].top, rects[0].bottom);
+	dc.TextOut(50, 50, test);
+
+	for (int i = 0; i < rects.GetCount(); i++) {
+		if (rects[i].left <= point.x && point.x <= rects[i].right ||
+			rects[i].right <= point.x && point.x <= rects[i].left) { // 양옆에 들어왔냐?
+			if (rects[i].top <= point.y && point.y <= rects[i].bottom ||
+				rects[i].bottom <= point.y && point.y <= rects[i].top) { // 위아래로 들어왔냐?
+				rectGate = names[i];
+				move = TRUE;
+				break;
+			}
+		}
 	}
 
-	CView::OnLButtonUp(nFlags, point);
+	//PaintView에 그려진 gate영역들이 선택됨?or 아님?
+	//이런거 구별 어떻게 하지..?
+
+	CView::OnLButtonDblClk(nFlags, point);
 }
 
+// 영역 움직이는 건 나중에 해보자!
 void CPaintView::OnMouseMove(UINT nFlags, CPoint point)
-{/*
-	if (move == TRUE && nFlags & MK_LBUTTON == 1 && current != -1) {
-		CClientDC dc(this);
+{
+	CClientDC dc(this);
+	if (move == TRUE & (nFlags & MK_LBUTTON)) {
 		dc.SelectStockObject(NULL_BRUSH);
 		dc.SetROP2(R2_NOT);
 
 //		dc.Rectangle(boxes[current].left, boxes[current].top, boxes[current].right, boxes[current].bottom);
 
+		WhatGate(rectGate, point, &dc);
+
 		// 이동
-		boxes[current].left += point.x - startx;
-		boxes[current].top += point.y - starty;
-		boxes[current].right += point.x - startx;
-		boxes[current].bottom += point.y - starty;
+		rects[current].left += point.x - startx;
+		rects[current].top += point.y - starty;
+		rects[current].right += point.x - startx;
+		rects[current].bottom += point.y - starty;
 
 		startx = point.x;
 		starty = point.y;
 
-		dc.Rectangle(boxes[current].left, boxes[current].top, boxes[current].right, boxes[current].bottom);
-	}*/
-	/*
+		WhatGate(rectGate, point, &dc);
+	}
+	
 	//움직이는 마우스 위치 출력
-	CClientDC dc(this);
 	CString temp;
 	temp.Format(_T("(%4d , %4d) "), point.x, point.y);
 	dc.TextOut(100, 100, temp);
-*/
-	CClientDC dc(this);
-
-	if (strGatename == "AND 게이트") {
-		Invalidate();
-		AndGate and (point);
-		dc.SetROP2(R2_BLACK);
-		and.Paint(&dc);
-	}
 
 	CView::OnMouseMove(nFlags, point);
 	
 }
 
+void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
+	if (gateName == "AND 게이트") {
+		//비트맵 출력
+		AndGate and (point);
+		and.Paint(dc);
+		
+		/* 영역 움직이는 거 설정 */
+		CRect* rect = new CRect(point.x, point.y, and.rectWidth(), and.rectHeight());
+		CString* name = new CString(gateName);
 
-void CPaintView::OnFileSave()
-{
-	// 저장
+		rects.Add(*rect);
+		names.Add(*name);
+	}
+	else if (gateName == "OR 게이트") {
+		//비트맵 출력
+		OrGate or (point);
+		or .Paint(dc);
+	}
+	else if (gateName == "NOT 게이트") {
+		//비트맵 출력
+		NotGate not(point);
+		not.Paint(dc);
+	}
+	else if (gateName == "NAND 게이트") {
+		NandGate nand(point);
+		nand.Paint(dc);
+	}
+	else if (gateName == "NOR 게이트") {
+		NorGate nor(point);
+		nor.Paint(dc);
+	}
+	else if (gateName == "XOR 게이트") {
+		XorGate xor (point);
+		xor.Paint(dc);
+		strGatename = "";
+	}
+	else if (gateName == "T-FF") {
+		TFF tff(point);
+		tff.Paint(dc);
+	}
+	else if (gateName == "JK-FF") {
+		JKFF jkff(point);
+		jkff.Paint(dc);
+	}
+	else if (gateName == "D-FF") {
+		DFF dff(point, clk);
+		dff.Paint(dc);
+	}
 }

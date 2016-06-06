@@ -12,12 +12,12 @@ ULONG_PTR g_GdiPlusTokenBoxData_DFF;
 
 IMPLEMENT_DYNAMIC(DFF, CWnd)
 
-DFF::DFF(CPoint point)
+DFF::DFF(CPoint point, int clk)
 {
 	this->point = point;
+	this->clk = clk;
 	GdiplusStartupInput GdiplusStartupInput;
 	GdiplusStartup(&g_GdiPlusTokenBoxData_DFF, &GdiplusStartupInput, NULL);
-
 }
 
 DFF::~DFF()
@@ -46,15 +46,15 @@ void DFF::Paint(CClientDC* dc) {
 	delete pBitmapDFF;
 
 
-	//기능 구현
+	//기능 구현(수정 하센)
 	if (UpInput == 0 || DownInput == 0) {// 00 -> 0  01 -> 0  10 -> 0
 		Output = 0;
 	}
 	else // 11 -> 1
 		Output = 1;
 
-	//연결 구현
-	if (UpWire == point.x + 3 && UpWire == point.y + 8 && DownWire == point.x + 3 && DownWire == point.y + 28) { // ANDGate와 선 연결 성공
+	//연결 구현(수정 하센)
+	if (UpWire == point.x + 3 && UpWire == point.y + 7 && DownWire == point.x + 3 && DownWire == point.y + 42) { // ANDGate와 선 연결 성공
 		connect = TRUE;
 	}
 }
@@ -84,7 +84,7 @@ void DFF::TextLabel(CClientDC* dc) {
 		outPut = _T("0");
 	}
 
-	dc->TextOutW(point.x + 72, point.y + 18, outPut);
+	dc->TextOutW(point.x + 72, point.y + 13, outPut);
 }
 
 BOOL DFF::Connect(CClientDC* dc) {

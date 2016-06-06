@@ -44,14 +44,14 @@ void JKFF::Paint(CClientDC* dc) {
 	delete pBitmapJKFF;
 
 
-	//기능 구현
+	//기능 구현(수정 하센)
 	if (UpInput == 0 || DownInput == 0) {// 00 -> 0  01 -> 0  10 -> 0
 		Output = 0;
 	}
 	else // 11 -> 1
 		Output = 1;
 
-	//연결 구현
+	//연결 구현(수정 하센)
 	if (UpWire == point.x + 3 && UpWire == point.y + 8 && DownWire == point.x + 3 && DownWire == point.y + 28) { // ANDGate와 선 연결 성공
 		connect = TRUE;
 	}
