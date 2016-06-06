@@ -5,11 +5,21 @@
 
 #pragma once
 #include "PaintView.h"
+#include "AndGate.h"
+#include "OrGate.h"
+#include "NotGate.h"
+#include "NandGate.h"
+#include "NorGate.h"
+#include "XorGate.h"
+#include "TFF.h"
+#include "JKFF.h"
+#include "DFF.h"
+#include "InputSwitch.h"
 
 class CLogicSimulator_1Doc : public CDocument
 {
 private:
-	CTreeView m_LogicSimulator;
+	CLogicSimulator_1Doc* m_doc;
 
 protected: // serialization에서만 만들어집니다.
 	CLogicSimulator_1Doc();

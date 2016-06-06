@@ -10,6 +10,7 @@
 #endif
 
 #include "LogicSimulator_1Doc.h"
+#include "MainFrm.h"
 
 #include <propkey.h>
 
@@ -40,17 +41,27 @@ BOOL CLogicSimulator_1Doc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-
-	// TODO: 여기에 재초기화 코드를 추가합니다.
-	// SDI 문서는 이 문서를 다시 사용합니다.
 	/*
-	CPaintView* pv;
-	POSITION pos = m_LogicSimulator.get
+	CPaintView* p_pv;
+	CLogicSimulator_1View* p_tv;
+	POSITION pos = m_doc->GetFirstViewPosition();
 	while (pos != NULL) {
-		pv = (CLogicSimulator_1View*)m_LogicSimulator.GetNext(pos);
-		delete pv;
+		p_pv = (CPaintView*)m_doc->GetNextView(pos);
+		delete *p_pv;
 	}
-	m_LogicSimulator.RemoveAll();*/
+	m_doc->RemoveView(p_pv);
+	m_doc->RemoveView(p_tv);
+
+
+	CMainFrame* pFrame = (CMainFrame*)AfxGetMainWnd();
+	CLogicSimulator_1View* pView = (CLogicSimulator_1View*)pFrame->GetActiveView();
+*/
+
+	CPaintView* p_pv;
+	CLogicSimulator_1View* p_tv;
+
+	m_doc->RemoveView(p_pv);
+	m_doc->RemoveView(p_tv);
 
 	return TRUE;
 }
