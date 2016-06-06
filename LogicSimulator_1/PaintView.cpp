@@ -14,6 +14,7 @@
 #include "TFF.h"
 #include "JKFF.h"
 #include "DFF.h"
+#include "InputSwitch.h"
 
 // CPaintView
 
@@ -25,6 +26,7 @@ CPaintView::CPaintView()
 	move = FALSE;
 	connect = FALSE;
 	current = -1;
+	INput = 0;
 }
 
 CPaintView::~CPaintView()
@@ -137,8 +139,22 @@ void CPaintView::OnLButtonDblClk(UINT nFlags, CPoint point)
 				move = TRUE;
 				current = i;
 				dc.FillSolidRect(rects[i].left, rects[i].top, rects[i].right, rects[i].bottom, RGB(255, 255, 255));
+				rectGate = names[current];
 				break;
 			}
+		}
+	}
+
+	if (rectGate == "입력 스위치") {
+		if (INput == 0) {
+			INput = 1;
+			InputSwitch inputSwitch(point, INput);
+			inputSwitch.Label(&dc);
+		}
+		else {
+			INput = 0;
+			InputSwitch inputSwitch(point, INput);
+			inputSwitch.Label(&dc);
 		}
 	}
 
@@ -165,7 +181,6 @@ void CPaintView::OnMouseMove(UINT nFlags, CPoint point)
 		point.x = startx;
 		point.y = starty;
 
-		rectGate = names[current];
 
 		strGatename = rectGate;
 
@@ -189,11 +204,11 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		and.Paint(dc);
 		
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, and.rectWidth(), and.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_AND = new CRect(point.x, point.y, and.rectWidth(), and.rectHeight());
+		CString* name_AND = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_AND);
+		names.Add(*name_AND);
 	}
 	else if (gateName == "OR 게이트") {
 		//비트맵 출력
@@ -201,11 +216,11 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		or.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, or.rectWidth(), or.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_OR = new CRect(point.x, point.y, or.rectWidth(), or.rectHeight());
+		CString* name_OR = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_OR);
+		names.Add(*name_OR);
 	}
 	else if (gateName == "NOT 게이트") {
 		//비트맵 출력
@@ -213,76 +228,87 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		not.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, not.rectWidth(), not.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_NOT = new CRect(point.x, point.y, not.rectWidth(), not.rectHeight());
+		CString* name_NOT = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_NOT);
+		names.Add(*name_NOT);
 	}
 	else if (gateName == "NAND 게이트") {
 		NandGate nand(point);
 		nand.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, nand.rectWidth(), nand.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_NAND = new CRect(point.x, point.y, nand.rectWidth(), nand.rectHeight());
+		CString* name_NAND = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_NAND);
+		names.Add(*name_NAND);
 	}
 	else if (gateName == "NOR 게이트") {
 		NorGate nor(point);
 		nor.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, nor.rectWidth(), nor.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_NOR = new CRect(point.x, point.y, nor.rectWidth(), nor.rectHeight());
+		CString* name_NOR = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_NOR);
+		names.Add(*name_NOR);
 	}
 	else if (gateName == "XOR 게이트") {
 		XorGate xor (point);
 		xor.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, xor.rectWidth(), xor.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_XOR = new CRect(point.x, point.y, xor.rectWidth(), xor.rectHeight());
+		CString* name_XOR = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_XOR);
+		names.Add(*name_XOR);
 	}
 	else if (gateName == "T-FF") {
 		TFF tff(point);
 		tff.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, tff.rectWidth(), tff.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_TFF = new CRect(point.x, point.y, tff.rectWidth(), tff.rectHeight());
+		CString* name_TFF = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_TFF);
+		names.Add(*name_TFF);
 	}
 	else if (gateName == "JK-FF") {
 		JKFF jkff(point);
 		jkff.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, jkff.rectWidth(), jkff.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_JKFF = new CRect(point.x, point.y, jkff.rectWidth(), jkff.rectHeight());
+		CString* name_JKFF = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_JKFF);
+		names.Add(*name_JKFF);
 	}
 	else if (gateName == "D-FF") {
 		DFF dff(point, clk);
 		dff.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect = new CRect(point.x, point.y, dff.rectWidth(), dff.rectHeight());
-		CString* name = new CString(gateName);
+		CRect* rect_DFF = new CRect(point.x, point.y, dff.rectWidth(), dff.rectHeight());
+		CString* name_DFF = new CString(gateName);
 
-		rects.Add(*rect);
-		names.Add(*name);
+		rects.Add(*rect_DFF);
+		names.Add(*name_DFF);
+	}
+	else if (gateName == "입력 스위치") {
+		InputSwitch inputSwitch(point, INput);
+
+		CRect* rect_SWITCH = new CRect(point.x, point.y, point.x + 3, point.y + 3);
+		CString* name_SWITCH = new CString(gateName);
+
+		rects.Add(*rect_SWITCH);
+		names.Add(*name_SWITCH);
+
+		inputSwitch.paint(dc);
 	}
 }
