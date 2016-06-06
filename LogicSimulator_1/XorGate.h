@@ -31,6 +31,7 @@ public:
 	void XorGate::Rotate(CClientDC* dc);
 	void XorGate::TextLabel(CClientDC* dc);
 	BOOL XorGate::Connect(CClientDC* dc);
+	void XorGate::function();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

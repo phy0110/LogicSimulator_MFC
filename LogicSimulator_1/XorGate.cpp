@@ -51,18 +51,20 @@ void XorGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNOT, Rect(point.x, point.y, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight()), 0, 0, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight(), UnitPixel);
 
-
-	//기능 구현(수정 하센)
-	if (UpInput == 0) { // 입력값 0
-		Output = 1;
-	}
-	else //입력값 1
-		Output = 0;
-
-	//연결 구현(수정 하센)
-	if (UpWire == point.x + 3 && UpWire == point.y + 19) { // NOTGate와 선 연결 성공
+	//연결 구현
+	if (UpWire == point.x + 3 && UpWire == point.y + 8 && DownWire == point.x + 3 && DownWire == point.y + 20) { // XOR 게이트와 선 연결 성공
 		connect = TRUE;
 	}
+}
+
+/* 와이어링 성공시 전류흐름 */
+void XorGate::function() {
+	//기능 구현
+	if (UpInput == DownInput) {// 00 -> 0  11 -> 0
+		Output = 0;
+	}
+	else // 01 -> 1  10 -> 1
+		Output = 1;
 }
 
 /* 비트맵 이미지 돌리기 */
@@ -90,7 +92,7 @@ void XorGate::TextLabel(CClientDC* dc) {
 		outPut = _T("0");
 	}
 
-	dc->TextOutW(point.x + 72, point.y + 18, outPut);
+	dc->TextOutW(point.x + 68, point.y + 13, outPut);
 }
 
 BOOL XorGate::Connect(CClientDC* dc) {
