@@ -16,10 +16,10 @@ public:
 	virtual ~TFF();
 	int Input; // 스위치 입력값
 	int Output; // 출력값
-	int UpInput; // 입력값1
-	int DownInput; // 입력값2
+	int T; // T입력값
+	int T_i; // T이전입력값
 	int UpWire; //와이어링1
-	int DownWire; //와이어링2
+	int CLKWire; //와이어링2
 	BOOL connect; // 연결
 	CPoint point;
 	void TFF::Paint(CClientDC* dc);
@@ -30,6 +30,8 @@ public:
 	int Height;
 	int TFF::rectWidth();
 	int TFF::rectHeight();
+	void TFF::function();
+	int CLK;
 protected:
 	DECLARE_MESSAGE_MAP()
 };

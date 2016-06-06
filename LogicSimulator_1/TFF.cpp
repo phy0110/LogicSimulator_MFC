@@ -42,17 +42,31 @@ void TFF::Paint(CClientDC* dc) {
 
 	delete pBitmapTFF;
 
-
-	//기능 구현(수정 하센)
-	if (UpInput == 0 || DownInput == 0) {// 00 -> 0  01 -> 0  10 -> 0
-		Output = 0;
-	}
-	else // 11 -> 1
-		Output = 1;
-
 	//연결 구현(수정 하센)
-	if (UpWire == point.x + 3 && UpWire == point.y + 8 && DownWire == point.x + 3 && DownWire == point.y + 28) { // ANDGate와 선 연결 성공
+	if (UpWire == point.x + 3 && UpWire == point.y + 18 && CLKWire == point.x + 3 && CLKWire == point.y + 49) { // TFF와 선 연결 성공
 		connect = TRUE;
+	}
+}
+
+void TFF::function() {
+	//기능 구현
+	if (CLK == 1) { // 상승에지
+		if (T == 1) {
+			if (T_i == 0)
+				T_i == 1;
+			else
+				T_i == 0;
+		}
+		T_i = T;
+	}
+	else {
+		if (T == 1) {
+			if (T_i == 0)
+				T_i == 1;
+			else
+				T_i == 0;
+		}
+		T_i = T;
 	}
 }
 
@@ -80,16 +94,24 @@ void TFF::Rotate(CClientDC* dc) {
 
 /* 라벨 출력 */
 void TFF::TextLabel(CClientDC* dc) {
-	CString outPut;
+	CString Ts;
+	CString Tis;
 
-	if (connect == TRUE && Output == 1) { // 출력값이 1일 경우
-		outPut = _T("1");
+	if (connect == TRUE && T == 1) {
+		Ts = _T("1");
 	}
-	else if (connect == TRUE&&Output == 0) { // 출력값이 0일 경우
-		outPut = _T("0");
+	else if (connect == TRUE && T == 0) {
+		Ts = _T("0");
+	}
+	if (connect == TRUE && T_i == 1) {
+		Tis = _T("1");
+	}
+	else if (connect == TRUE && T_i == 0) {
+		Tis = _T("0");
 	}
 
-	dc->TextOutW(point.x + 72, point.y + 18, outPut);
+	dc->TextOutW(point.x + 75, point.y + 13, Ts);
+	dc->TextOutW(point.x + 75, point.y + 49, Tis);
 }
 
 BOOL TFF::Connect(CClientDC* dc) {
