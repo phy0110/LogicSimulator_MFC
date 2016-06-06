@@ -26,6 +26,10 @@ public:
 	void TFF::Rotate(CClientDC* dc);
 	void TFF::TextLabel(CClientDC* dc);
 	BOOL TFF::Connect(CClientDC* dc);
+	int Width;
+	int Height;
+	int TFF::rectWidth();
+	int TFF::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

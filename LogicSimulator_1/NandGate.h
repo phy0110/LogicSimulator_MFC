@@ -31,6 +31,10 @@ public:
 	void NandGate::TextLabel(CClientDC* dc);
 	BOOL NandGate::Connect(CClientDC* dc);
 	void NandGate::function();
+	int Width;
+	int Height;
+	int NandGate::rectWidth();
+	int NandGate::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

@@ -98,6 +98,8 @@ IDB_JKFF                BITMAP                  "res\\bmp00005.bmp"
 
 IDB_TFF                 BITMAP                  "res\\bmp00006.bmp"
 
+IDB_REMOVE              BITMAP                  "res\\bmp00007.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

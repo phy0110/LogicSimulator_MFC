@@ -31,6 +31,10 @@ public:
 	void NotGate::TextLabel(CClientDC* dc);
 	BOOL NotGate::Connect(CClientDC* dc);
 	void NotGate::function();
+	int Width;
+	int Height;
+	int NotGate::rectWidth();
+	int NotGate::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

@@ -27,6 +27,10 @@ public:
 	void JKFF::Rotate(CClientDC* dc);
 	void JKFF::TextLabel(CClientDC* dc);
 	BOOL JKFF::Connect(CClientDC* dc);
+	int Width;
+	int Height;
+	int JKFF::rectWidth();
+	int JKFF::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

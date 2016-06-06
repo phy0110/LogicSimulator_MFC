@@ -242,6 +242,7 @@
     <Image Include="res\bmp00004.bmp" />
     <Image Include="res\bmp00005.bmp" />
     <Image Include="res\bmp00006.bmp" />
+    <Image Include="res\bmp00007.bmp" />
     <Image Include="res\LogicSimulator_1.ico" />
     <Image Include="res\LogicSimulator_1Doc.ico" />
     <Image Include="res\Toolbar.bmp" />

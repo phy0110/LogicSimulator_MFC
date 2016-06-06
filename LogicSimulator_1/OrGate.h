@@ -32,6 +32,10 @@ public:
 	void OrGate::TextLabel(CClientDC* dc);
 	BOOL OrGate::Connect(CClientDC* dc);
 	void OrGate::function();
+	int Width;
+	int Height;
+	int OrGate::rectWidth();
+	int OrGate::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

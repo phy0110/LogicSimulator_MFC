@@ -61,6 +61,14 @@ void OrGate::Paint(CClientDC* dc) {
 	}
 }
 
+int OrGate::rectWidth() {
+	return Width;
+}
+
+int OrGate::rectHeight() {
+	return Height;
+}
+
 /* 와이어링 성공시 전류흐름 */
 void OrGate::function() {
 	//기능 구현

@@ -57,6 +57,14 @@ void NorGate::Paint(CClientDC* dc) {
 	}
 }
 
+int NorGate::rectWidth() {
+	return Width;
+}
+
+int NorGate::rectHeight() {
+	return Height;
+}
+
 /* 와이어링 성공시 전류흐름 */
 void NorGate::function() {
 	//기능 구현

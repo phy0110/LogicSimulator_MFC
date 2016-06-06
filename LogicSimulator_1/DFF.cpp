@@ -41,7 +41,7 @@ void DFF::Paint(CClientDC* dc) {
 	Graphics ScreenG(dc->GetSafeHdc());
 	Bitmap* pBitmapDFF;
 	pBitmapDFF = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_DFF));
-	ScreenG.DrawImage(pBitmapDFF, Rect(0, 0, pBitmapDFF->GetWidth(), pBitmapDFF->GetHeight()), 0, 0, pBitmapDFF->GetWidth(), pBitmapDFF->GetHeight(), UnitPixel);
+	ScreenG.DrawImage(pBitmapDFF, Rect(point.x, point.y, pBitmapDFF->GetWidth(), pBitmapDFF->GetHeight()), 0, 0, pBitmapDFF->GetWidth(), pBitmapDFF->GetHeight(), UnitPixel);
 
 	delete pBitmapDFF;
 
@@ -55,15 +55,27 @@ void DFF::Paint(CClientDC* dc) {
 void DFF::function() {
 	//기능 구현
 	if (clk == 1) { // 상승 에지
-		if (UpInput == 0) {// 00 -> 0  01 -> 0  10 -> 0
+		if (UpInput == 0) {// 입력값이 0이면 리셋
 			Output = 0;
 		}
-		else // 11 -> 1
+		else // 입력값이 1이면 세트
 			Output = 1;
 	}
 	else { // 하강 에지
-
+		if (UpInput == 0) {// 입력값이 0이면 리셋
+			Output = 0;
+		}
+		else // 입력값이 0이면 리셋
+			Output = 1;
 	}
+}
+
+int DFF::rectWidth() {
+	return Width;
+}
+
+int DFF::rectHeight() {
+	return Height;
 }
 
 /* 비트맵 이미지 돌리기 */

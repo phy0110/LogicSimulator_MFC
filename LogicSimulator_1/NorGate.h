@@ -31,6 +31,10 @@ public:
 	void NorGate::TextLabel(CClientDC* dc);
 	BOOL NorGate::Connect(CClientDC* dc);
 	void NorGate::function();
+	int Width;
+	int Height;
+	int NorGate::rectWidth();
+	int NorGate::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

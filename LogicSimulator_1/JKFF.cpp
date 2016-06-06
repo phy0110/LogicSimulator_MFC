@@ -57,6 +57,14 @@ void JKFF::Paint(CClientDC* dc) {
 	}
 }
 
+int JKFF::rectWidth() {
+	return Width;
+}
+
+int JKFF::rectHeight() {
+	return Height;
+}
+
 /* 비트맵 이미지 돌리기 */
 void JKFF::Rotate(CClientDC* dc) {
 	//이미지 돌려주고 나서 돌리기 전 그 영역의 이미지는 없애고 싶은데...

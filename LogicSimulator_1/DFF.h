@@ -29,6 +29,10 @@ public:
 	void DFF::TextLabel(CClientDC* dc);
 	BOOL DFF::Connect(CClientDC* dc);
 	void DFF::function();
+	int Width;
+	int Height;
+	int DFF::rectWidth();
+	int DFF::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

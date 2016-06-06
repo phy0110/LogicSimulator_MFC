@@ -32,6 +32,10 @@ public:
 	void XorGate::TextLabel(CClientDC* dc);
 	BOOL XorGate::Connect(CClientDC* dc);
 	void XorGate::function();
+	int Width;
+	int Height;
+	int XorGate::rectWidth();
+	int XorGate::rectHeight();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

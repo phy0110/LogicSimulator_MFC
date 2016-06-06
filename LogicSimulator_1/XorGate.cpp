@@ -57,6 +57,14 @@ void XorGate::Paint(CClientDC* dc) {
 	}
 }
 
+int XorGate::rectWidth() {
+	return Width;
+}
+
+int XorGate::rectHeight() {
+	return Height;
+}
+
 /* 와이어링 성공시 전류흐름 */
 void XorGate::function() {
 	//기능 구현

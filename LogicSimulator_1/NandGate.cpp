@@ -57,6 +57,14 @@ void NandGate::Paint(CClientDC* dc) {
 	}
 }
 
+int NandGate::rectWidth() {
+	return Width;
+}
+
+int NandGate::rectHeight() {
+	return Height;
+}
+
 /* 와이어링 성공시 전류흐름 */
 void NandGate::function() {
 	//기능 구현

@@ -57,6 +57,14 @@ void NotGate::Paint(CClientDC* dc) {
 	}
 }
 
+int NotGate::rectWidth() {
+	return Width;
+}
+
+int NotGate::rectHeight() {
+	return Height;
+}
+
 /* 와이어링 성공시 전류흐름 */
 void NotGate::function() {
 	//기능 구현
