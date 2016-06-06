@@ -30,6 +30,7 @@ public:
 	void NorGate::Rotate(CClientDC* dc);
 	void NorGate::TextLabel(CClientDC* dc);
 	BOOL NorGate::Connect(CClientDC* dc);
+	void NorGate::function();
 protected:
 	DECLARE_MESSAGE_MAP()
 };
