@@ -30,6 +30,7 @@ public:
 	void NotGate::Rotate(CClientDC* dc);
 	void NotGate::TextLabel(CClientDC* dc);
 	BOOL NotGate::Connect(CClientDC* dc);
+	void NotGate::function();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

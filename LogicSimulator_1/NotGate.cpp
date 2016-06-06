@@ -51,20 +51,21 @@ void NotGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNOT, Rect(point.x, point.y, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight()), 0, 0, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight(), UnitPixel);
 
-
-	//기능 구현
-	if (UpInput == 0) { // 입력값 0
-		Output = 1;
-	}
-	else //입력값 1
-		Output = 0;
-
 	//연결 구현
 	if (UpWire == point.x + 3 && UpWire == point.y + 19) { // NOTGate와 선 연결 성공
 		connect = TRUE;
 	}
 }
 
+/* 와이어링 성공시 전류흐름 */
+void NotGate::function() {
+	//기능 구현
+	if (UpInput == 0) { // 입력값 0
+		Output = 1;
+	}
+	else //입력값 1
+		Output = 0;
+}
 
 /* 비트맵 이미지 돌리기 */
 void NotGate::Rotate(CClientDC* dc) {
