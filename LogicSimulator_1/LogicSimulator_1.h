@@ -19,7 +19,6 @@ class CLogicSimulator_1App : public CWinApp
 public:
 	CLogicSimulator_1App();
 
-
 // 재정의입니다.
 public:
 	virtual BOOL InitInstance();

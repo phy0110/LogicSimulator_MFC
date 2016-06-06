@@ -32,7 +32,8 @@ public:
 	CString rectGate;
 	void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc); // 게이트 구별
 	BOOL Draw;
-	int INput;
+	int INput;//입력값
+	int OUTput;//출력값
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE

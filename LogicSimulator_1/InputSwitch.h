@@ -11,8 +11,8 @@ public:
 	InputSwitch(CPoint point, int INput);
 	virtual ~InputSwitch();
 	void InputSwitch::paint(CClientDC* dc);
-	CPoint point;
 	void InputSwitch::Label(CClientDC* dc);
+	CPoint point;
 	int INput;
 protected:
 	DECLARE_MESSAGE_MAP()

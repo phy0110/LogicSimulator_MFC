@@ -56,12 +56,9 @@ BOOL CLogicSimulator_1Doc::OnNewDocument()
 	CMainFrame* pFrame = (CMainFrame*)AfxGetMainWnd();
 	CLogicSimulator_1View* pView = (CLogicSimulator_1View*)pFrame->GetActiveView();
 */
-
-	CPaintView* p_pv;
-	CLogicSimulator_1View* p_tv;
-
-	m_doc->RemoveView(p_pv);
-	m_doc->RemoveView(p_tv);
+//	CLogicSimulator_1App* app = (CLogicSimulator_1App*)AfxGetApp();
+	//app->CreateFile();
+//	app->InitInstance();
 
 	return TRUE;
 }

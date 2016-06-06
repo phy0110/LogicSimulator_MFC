@@ -15,6 +15,7 @@
 #include "JKFF.h"
 #include "DFF.h"
 #include "InputSwitch.h"
+#include "OutputLamp.h"
 
 // CPaintView
 
@@ -27,6 +28,7 @@ CPaintView::CPaintView()
 	connect = FALSE;
 	current = -1;
 	INput = 0;
+	OUTput = 0;
 }
 
 CPaintView::~CPaintView()
@@ -303,12 +305,23 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 	else if (gateName == "입력 스위치") {
 		InputSwitch inputSwitch(point, INput);
 
-		CRect* rect_SWITCH = new CRect(point.x, point.y, point.x + 3, point.y + 3);
+		CRect* rect_SWITCH = new CRect(point.x, point.y, point.x + 15, point.y + 15);
 		CString* name_SWITCH = new CString(gateName);
 
 		rects.Add(*rect_SWITCH);
 		names.Add(*name_SWITCH);
 
 		inputSwitch.paint(dc);
+	}
+	else if (gateName == "출력 램프") {
+		OutputLamp outputLamp(point, OUTput);
+
+		CRect* rect_SWITCH = new CRect(point.x, point.y, point.x + 15, point.y + 15);
+		CString* name_SWITCH = new CString(gateName);
+
+		rects.Add(*rect_SWITCH);
+		names.Add(*name_SWITCH);
+
+		outputLamp.paint(dc);
 	}
 }

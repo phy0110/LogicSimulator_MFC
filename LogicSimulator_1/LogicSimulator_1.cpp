@@ -155,7 +155,6 @@ void CLogicSimulator_1App::OnAppAbout()
 	aboutDlg.DoModal();
 }
 
-// CLogicSimulator_1App 메시지 처리기
-
+// CLogicSimulator_1App 메시지 처리
 
 
