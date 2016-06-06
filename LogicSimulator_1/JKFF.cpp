@@ -43,16 +43,8 @@ void JKFF::Paint(CClientDC* dc) {
 
 	delete pBitmapJKFF;
 
-
-	//기능 구현(수정 하센)
-	if (UpInput == 0 || DownInput == 0) {// 00 -> 0  01 -> 0  10 -> 0
-		Output = 0;
-	}
-	else // 11 -> 1
-		Output = 1;
-
-	//연결 구현(수정 하센)
-	if (UpWire == point.x + 3 && UpWire == point.y + 8 && DownWire == point.x + 3 && DownWire == point.y + 28) { // ANDGate와 선 연결 성공
+	//연결 구현(수정 하센_x랑 y따로 두기)
+	if (UpWire == point.x + 3 && UpWire == point.y + 13 && DownWire == point.x + 3 && DownWire == point.y + 49 && CLKWire == point.x + 5 && CLKWire == point.y + 30) { // JKFF와 선 연결 성공
 		connect = TRUE;
 	}
 }
@@ -63,6 +55,58 @@ int JKFF::rectWidth() {
 
 int JKFF::rectHeight() {
 	return Height;
+}
+
+void JKFF::function() {
+	if (CLK == 1) { // 상승에지
+		//기능 구현
+		if (J == 0 && K == 1) {// 리셋
+			Output_J = 0;
+			Output_K = 0;
+		}
+		else if (J == 1 & &K == 0) { // 세트
+			Output_J = 1;
+			Output_K = 1;
+		}
+		else if (J == 1 && K == 1) {//토글
+			if (Output_J == 1) {
+				Output_J = 0;
+			}
+			else if (Output_J == 0) {
+				Output_J = 1;
+			}
+			if (Output_K == 1) {
+				Output_K = 0;
+			}
+			else if (Output_K == 0) {
+				Output_K = 1;
+			}
+		}
+	}
+	else { // 하강에지
+		if (J == 0 && K == 1) {// 리셋
+			Output_J = 0;
+			Output_K = 0;
+		}
+		else if (J == 1 & &K == 0) { // 세트
+			Output_J = 1;
+			Output_K = 1;
+		}
+		else if (J == 1 && K == 1) {//토글
+			if (Output_J == 1) {
+				Output_J = 0;
+			}
+			else if (Output_J == 0) {
+				Output_J = 1;
+			}
+			if (Output_K == 1) {
+				Output_K = 0;
+			}
+			else if (Output_K == 0) {
+				Output_K = 1;
+			}
+		}
+	}
 }
 
 /* 비트맵 이미지 돌리기 */
@@ -81,16 +125,24 @@ void JKFF::Rotate(CClientDC* dc) {
 
 /* 라벨 출력 */
 void JKFF::TextLabel(CClientDC* dc) {
-	CString outPut;
+	CString outPut_J;
+	CString outPut_K;
 
-	if (connect == TRUE && Output == 1) { // 출력값이 1일 경우
-		outPut = _T("1");
+	if (connect == TRUE && Output_J == 1) { // 출력값이 1일 경우
+		outPut_J = _T("1");
 	}
-	else if (connect == TRUE&&Output == 0) { // 출력값이 0일 경우
-		outPut = _T("0");
+	else if (connect == TRUE && Output_J == 0) { // 출력값이 0일 경우
+		outPut_J = _T("0");
+	}
+	if (connect == TRUE && Output_K == 1) { // 출력값이 1일 경우
+		outPut_K = _T("1");
+	}
+	else if (connect == TRUE && Output_K == 0) { // 출력값이 0일 경우
+		outPut_K = _T("0");
 	}
 
-	dc->TextOutW(point.x + 72, point.y + 18, outPut);
+	dc->TextOutW(point.x + 74, point.y + 13, outPut_J);
+	dc->TextOutW(point.x + 74, point.y + 49, outPut_K);
 }
 
 BOOL JKFF::Connect(CClientDC* dc) {
