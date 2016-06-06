@@ -31,6 +31,7 @@ public:
 	int clk; //FF을 위한 클록 신호
 	CString rectGate;
 	void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc); // 게이트 구별
+	BOOL Draw;
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE

@@ -185,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="AndGate.h" />
     <ClInclude Include="DFF.h" />
+    <ClInclude Include="InputSwitch.h" />
     <ClInclude Include="JKFF.h" />
     <ClInclude Include="LogicSimulator_1.h" />
     <ClInclude Include="LogicSimulator_1Doc.h" />
@@ -204,6 +205,7 @@
   <ItemGroup>
     <ClCompile Include="AndGate.cpp" />
     <ClCompile Include="DFF.cpp" />
+    <ClCompile Include="InputSwitch.cpp" />
     <ClCompile Include="JKFF.cpp" />
     <ClCompile Include="LogicSimulator_1.cpp" />
     <ClCompile Include="LogicSimulator_1Doc.cpp" />
