@@ -30,6 +30,7 @@ public:
 	void NandGate::Rotate(CClientDC* dc);
 	void NandGate::TextLabel(CClientDC* dc);
 	BOOL NandGate::Connect(CClientDC* dc);
+	void NandGate::function();
 protected:
 	DECLARE_MESSAGE_MAP()
 };

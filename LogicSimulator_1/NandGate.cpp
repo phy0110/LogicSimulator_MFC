@@ -51,18 +51,20 @@ void NandGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNAND, Rect(point.x, point.y, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight()), 0, 0, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight(), UnitPixel);
 
-
-	//기능 구현(수정 하센)
-	if (UpInput == 0) { // 입력값 0
-		Output = 1;
-	}
-	else //입력값 1
-		Output = 0;
-
-	//연결 구현(수정 하센)
-	if (UpWire == point.x + 3 && UpWire == point.y + 19) { // NOTGate와 선 연결 성공
+	//연결 구현
+	if (UpWire == point.x + 3 && UpWire == point.y + 9 && DownWire == point.x + 3 && DownWire == point.y + 28) { // NANDGate와 선 연결 성공
 		connect = TRUE;
 	}
+}
+
+/* 와이어링 성공시 전류흐름 */
+void NandGate::function() {
+	//기능 구현
+	if (UpInput == 1&&Output==1) { // 11 -> 0
+		Output = 0;
+	}
+	else // 00 -> 1  01 -> 1  10 -> 1
+		Output = 1;
 }
 
 /* 비트맵 이미지 돌리기 */
@@ -90,7 +92,7 @@ void NandGate::TextLabel(CClientDC* dc) {
 		outPut = _T("0");
 	}
 
-	dc->TextOutW(point.x + 72, point.y + 18, outPut);
+	dc->TextOutW(point.x + 80, point.y + 18, outPut);
 }
 
 BOOL NandGate::Connect(CClientDC* dc) {
