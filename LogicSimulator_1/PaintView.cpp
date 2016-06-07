@@ -16,6 +16,7 @@
 #include "DFF.h"
 #include "InputSwitch.h"
 #include "OutputLamp.h"
+#include "Wire.h"
 
 // CPaintView
 
@@ -106,6 +107,7 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 	CClientDC dc(this);
 	CPen pen(PS_SOLID, 4, RGB(0, 0, 255)); // ∆Ê ∞¥√º∏¶ ∏∏µÁ¥Ÿ.
 	CPen *pOldPen = dc.SelectObject(&pen); // ªı∑ŒøÓ ∆Ê º±≈√, ¿Ã¿¸ ∆Ê ¿˙¿Â
+	/*
 	if (Draw == TRUE) {
 		if (check == TRUE) {
 			point1 = point;
@@ -117,7 +119,7 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 			dc.MoveTo(point1.x, point1.y);
 			dc.LineTo(point2.x, point2.y);
 		}
-	}
+	}*/
 	
 	CView::OnLButtonDown(nFlags, point);
 }
@@ -323,5 +325,8 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		names.Add(*name_SWITCH);
 
 		outputLamp.paint(dc);
+	}
+	else {
+
 	}
 }

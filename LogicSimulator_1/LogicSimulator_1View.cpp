@@ -98,6 +98,10 @@ void CLogicSimulator_1View::OnInitialUpdate()
 	// 텍스트 라벨 추가
 	/* 1-레벨 초기화 */
 	HTREEITEM hText = tree.InsertItem(_T("텍스트 라벨"), 0, 0, TVI_ROOT, TVI_LAST);
+
+	// 선 추가
+	/* 1-레벨 초기화 */
+	HTREEITEM hWire = tree.InsertItem(_T("선 연결"), 0, 0, TVI_ROOT, TVI_LAST);
 }
 
 

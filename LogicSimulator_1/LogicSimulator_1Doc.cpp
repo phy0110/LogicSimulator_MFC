@@ -85,7 +85,28 @@ void CLogicSimulator_1Doc::Serialize(CArchive& ar)
 	else
 	{
 		// TODO: 여기에 로딩 코드를 추가합니다.
-	}*/
+	}
+	//옵션 선택 부분.
+	if (dlgFileSave.DoModal() == IDOK)
+	{
+		vector::iterator EffectItr;
+		EffectItr = DTool.m_DEffect.m_Effect.begin();
+
+		CString Temp;
+		Temp.Format(L"%s%s", dlgFileSave.GetFileName(), L".ds");
+
+		HANDLE  hFile;
+		DWORD  dwRead;
+
+		//파일저장 시작 
+		hFile = CreateFile(Temp, GENERIC_WRITE, 0, NULL,
+			CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+
+		//애니메이션 관련 정보 저장 
+		WriteFile(hFile, &EffectItr[m_nEffectListSelect].AniControl.m_TGaro, sizeof(int), &dwRead, NULL);
+		WriteFile(hFile, &EffectItr[m_nEffectListSelect].AniControl.m_TSaro, sizeof(int), &dwRead, NULL);
+		CloseHandle(hFile);*/
 }
 
 #ifdef SHARED_HANDLERS

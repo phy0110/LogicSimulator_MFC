@@ -34,6 +34,7 @@ public:
 	BOOL Draw;
 	int INput;//입력값
 	int OUTput;//출력값
+	BOOL count;//선 입력
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE
