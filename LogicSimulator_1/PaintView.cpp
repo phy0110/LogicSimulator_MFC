@@ -104,10 +104,11 @@ void CPaintView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	/*
 	CClientDC dc(this);
 	CPen pen(PS_SOLID, 4, RGB(0, 0, 255)); // 펜 객체를 만든다.
 	CPen *pOldPen = dc.SelectObject(&pen); // 새로운 펜 선택, 이전 펜 저장
-	/*
+	
 	if (Draw == TRUE) {
 		if (check == TRUE) {
 			point1 = point;
@@ -119,7 +120,8 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 			dc.MoveTo(point1.x, point1.y);
 			dc.LineTo(point2.x, point2.y);
 		}
-	}*/
+	}
+	*/
 	
 	CView::OnLButtonDown(nFlags, point);
 }
@@ -129,9 +131,7 @@ void CPaintView::OnLButtonDown(UINT nFlags, CPoint point)
 void CPaintView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	CClientDC dc(this);
-	CString test;
-	test.Format(_T("(%d , %d, %d, %d) "), rects[0].left, rects[0].right, rects[0].top, rects[0].bottom);
-	dc.TextOut(50, 50, test);
+	
 	startx = point.x;
 	starty = point.y;
 
@@ -168,11 +168,9 @@ void CPaintView::OnLButtonDblClk(UINT nFlags, CPoint point)
 void CPaintView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CClientDC dc(this);
-	if (move == TRUE && (nFlags & MK_LBUTTON==1)) {
-		CString test1;
-		test1.Format(_T("들어옴"));
-		dc.TextOut(50, 50, test1);
 
+	if (move == TRUE && (nFlags & MK_LBUTTON==1)) 
+	{
 		// 이동
 		rects[current].left += point.x - startx;
 		rects[current].top += point.y - starty;
@@ -191,12 +189,6 @@ void CPaintView::OnMouseMove(UINT nFlags, CPoint point)
 		
 	}
 	
-	//움직이는 마우스 위치 출력
-	CString temp;
-	temp.Format(_T("(%4d , %4d) "), point.x, point.y);
-	dc.TextOut(100, 100, temp);
-
-
 	CView::OnMouseMove(nFlags, point);
 	
 }
@@ -208,7 +200,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		and.Paint(dc);
 		
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_AND = new CRect(point.x, point.y, and.rectWidth(), and.rectHeight());
+		CRect* rect_AND = new CRect(point.x, point.y, point.x + and.rectWidth(), point.y + and.rectHeight());
 		CString* name_AND = new CString(gateName);
 
 		rects.Add(*rect_AND);
@@ -220,7 +212,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		or.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_OR = new CRect(point.x, point.y, or.rectWidth(), or.rectHeight());
+		CRect* rect_OR = new CRect(point.x, point.y, point.x + or.rectWidth(), point.y + or.rectHeight());
 		CString* name_OR = new CString(gateName);
 
 		rects.Add(*rect_OR);
@@ -232,7 +224,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		not.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_NOT = new CRect(point.x, point.y, not.rectWidth(), not.rectHeight());
+		CRect* rect_NOT = new CRect(point.x, point.y, point.x + not.rectWidth(), point.y + not.rectHeight());
 		CString* name_NOT = new CString(gateName);
 
 		rects.Add(*rect_NOT);
@@ -243,7 +235,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		nand.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_NAND = new CRect(point.x, point.y, nand.rectWidth(), nand.rectHeight());
+		CRect* rect_NAND = new CRect(point.x, point.y, point.x + nand.rectWidth(), point.y + nand.rectHeight());
 		CString* name_NAND = new CString(gateName);
 
 		rects.Add(*rect_NAND);
@@ -254,7 +246,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		nor.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_NOR = new CRect(point.x, point.y, nor.rectWidth(), nor.rectHeight());
+		CRect* rect_NOR = new CRect(point.x, point.y, point.x + nor.rectWidth(), point.y + nor.rectHeight());
 		CString* name_NOR = new CString(gateName);
 
 		rects.Add(*rect_NOR);
@@ -265,7 +257,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		xor.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_XOR = new CRect(point.x, point.y, xor.rectWidth(), xor.rectHeight());
+		CRect* rect_XOR = new CRect(point.x, point.y, point.x + xor.rectWidth(), point.y + xor.rectHeight());
 		CString* name_XOR = new CString(gateName);
 
 		rects.Add(*rect_XOR);
@@ -276,7 +268,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		tff.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_TFF = new CRect(point.x, point.y, tff.rectWidth(), tff.rectHeight());
+		CRect* rect_TFF = new CRect(point.x, point.y, point.x + tff.rectWidth(), point.y + tff.rectHeight());
 		CString* name_TFF = new CString(gateName);
 
 		rects.Add(*rect_TFF);
@@ -287,7 +279,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		jkff.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_JKFF = new CRect(point.x, point.y, jkff.rectWidth(), jkff.rectHeight());
+		CRect* rect_JKFF = new CRect(point.x, point.y, point.x + jkff.rectWidth(), point.y + jkff.rectHeight());
 		CString* name_JKFF = new CString(gateName);
 
 		rects.Add(*rect_JKFF);
@@ -298,7 +290,7 @@ void CPaintView::WhatGate(CString gateName, CPoint point, CClientDC* dc) {
 		dff.Paint(dc);
 
 		/* 영역 움직이는 거 설정 */
-		CRect* rect_DFF = new CRect(point.x, point.y, dff.rectWidth(), dff.rectHeight());
+		CRect* rect_DFF = new CRect(point.x, point.y, point.x + dff.rectWidth(), point.y + dff.rectHeight());
 		CString* name_DFF = new CString(gateName);
 
 		rects.Add(*rect_DFF);
