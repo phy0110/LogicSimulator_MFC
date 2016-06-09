@@ -51,6 +51,9 @@ void NorGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNOR, Rect(point.x, point.y, pBitmapNOR->GetWidth(), pBitmapNOR->GetHeight()), 0, 0, pBitmapNOR->GetWidth(), pBitmapNOR->GetHeight(), UnitPixel);
 
+	Width = pBitmapNOR->GetWidth();
+	Height = pBitmapNOR->GetHeight();
+
 	//연결 구현
 	if (UpWire == point.x + 3 && UpWire == point.y + 7 && DownWire == point.x + 3 && DownWire == point.y + 19) { // NORGate와 선 연결 성공
 		connect = TRUE;

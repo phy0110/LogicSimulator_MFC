@@ -51,6 +51,9 @@ void NandGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNAND, Rect(point.x, point.y, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight()), 0, 0, pBitmapNAND->GetWidth(), pBitmapNAND->GetHeight(), UnitPixel);
 
+	Width = pBitmapNAND->GetWidth();
+	Height = pBitmapNAND->GetHeight();
+
 	//연결 구현
 	if (UpWire == point.x + 3 && UpWire == point.y + 9 && DownWire == point.x + 3 && DownWire == point.y + 28) { // NANDGate와 선 연결 성공
 		connect = TRUE;

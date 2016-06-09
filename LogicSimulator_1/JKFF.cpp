@@ -41,6 +41,9 @@ void JKFF::Paint(CClientDC* dc) {
 	pBitmapJKFF = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_JKFF));
 	ScreenG.DrawImage(pBitmapJKFF, Rect(point.x, point.y, pBitmapJKFF->GetWidth(), pBitmapJKFF->GetHeight()), 0, 0, pBitmapJKFF->GetWidth(), pBitmapJKFF->GetHeight(), UnitPixel);
 
+	Width = pBitmapJKFF->GetWidth();
+	Height = pBitmapJKFF->GetHeight();
+
 	delete pBitmapJKFF;
 
 	//연결 구현(수정 하센_x랑 y따로 두기)

@@ -53,7 +53,8 @@ void OrGate::Paint(CClientDC* dc) {
 	ScreenG.DrawImage(pBitmapOR, Rect(point.x, point.y, pBitmapOR->GetWidth(), pBitmapOR->GetHeight()), 0, 0, pBitmapOR->GetWidth(), pBitmapOR->GetHeight(), UnitPixel);
 
 
-	
+	Width = pBitmapOR->GetWidth();
+	Height = pBitmapOR->GetHeight();
 
 	//연결 구현
 	if (UpWire == point.x + 3 && UpWire == point.y + 7 && DownWire == point.x + 3 && DownWire == point.y + 19) { // ORGate와 선 연결 성공

@@ -40,6 +40,9 @@ void TFF::Paint(CClientDC* dc) {
 	pBitmapTFF = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_TFF));
 	ScreenG.DrawImage(pBitmapTFF, Rect(point.x, point.y, pBitmapTFF->GetWidth(), pBitmapTFF->GetHeight()), 0, 0, pBitmapTFF->GetWidth(), pBitmapTFF->GetHeight(), UnitPixel);
 
+	Width = pBitmapTFF->GetWidth();
+	Height = pBitmapTFF->GetHeight();
+
 	delete pBitmapTFF;
 
 	//연결 구현(수정 하센)

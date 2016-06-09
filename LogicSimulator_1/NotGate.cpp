@@ -51,6 +51,9 @@ void NotGate::Paint(CClientDC* dc) {
 
 	ScreenG.DrawImage(pBitmapNOT, Rect(point.x, point.y, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight()), 0, 0, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight(), UnitPixel);
 
+	Width = pBitmapNOT->GetWidth();
+	Height = pBitmapNOT->GetHeight();
+
 	//연결 구현
 	if (UpWire == point.x + 3 && UpWire == point.y + 19) { // NOTGate와 선 연결 성공
 		connect = TRUE;

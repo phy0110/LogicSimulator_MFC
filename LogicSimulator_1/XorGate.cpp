@@ -46,11 +46,14 @@ void XorGate::Paint(CClientDC* dc) {
 
 /* GDI+ 구현 */
 	Graphics ScreenG(dc->GetSafeHdc());
-	Bitmap* pBitmapNOT;
-	pBitmapNOT = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_XOR));
+	Bitmap* pBitmapXOR;
+	pBitmapXOR = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_XOR));
 
-	ScreenG.DrawImage(pBitmapNOT, Rect(point.x, point.y, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight()), 0, 0, pBitmapNOT->GetWidth(), pBitmapNOT->GetHeight(), UnitPixel);
+	ScreenG.DrawImage(pBitmapXOR, Rect(point.x, point.y, pBitmapXOR->GetWidth(), pBitmapXOR->GetHeight()), 0, 0, pBitmapXOR->GetWidth(), pBitmapXOR->GetHeight(), UnitPixel);
 
+	Width = pBitmapXOR->GetWidth();
+	Height = pBitmapXOR->GetHeight();
+	
 	//연결 구현
 	if (UpWire == point.x + 3 && UpWire == point.y + 8 && DownWire == point.x + 3 && DownWire == point.y + 20) { // XOR 게이트와 선 연결 성공
 		connect = TRUE;

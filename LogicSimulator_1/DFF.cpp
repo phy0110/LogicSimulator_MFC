@@ -43,6 +43,9 @@ void DFF::Paint(CClientDC* dc) {
 	pBitmapDFF = Bitmap::FromResource(AfxGetInstanceHandle(), (WCHAR*)MAKEINTRESOURCE(IDB_DFF));
 	ScreenG.DrawImage(pBitmapDFF, Rect(point.x, point.y, pBitmapDFF->GetWidth(), pBitmapDFF->GetHeight()), 0, 0, pBitmapDFF->GetWidth(), pBitmapDFF->GetHeight(), UnitPixel);
 
+	Width = pBitmapDFF->GetWidth();
+	Height = pBitmapDFF->GetHeight();
+
 	delete pBitmapDFF;
 
 	//연결 구현
